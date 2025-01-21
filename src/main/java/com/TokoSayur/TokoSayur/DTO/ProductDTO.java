@@ -3,58 +3,52 @@ package com.TokoSayur.TokoSayur.DTO;
 import java.math.BigDecimal;
 
 public class ProductDTO {
-    private Long id;
-    private Long idAdmin;
-    private String namaSayur;
-    private String beratSayur;
-    private BigDecimal hargaSayur;
-    private String image;  // Menambahkan properti untuk gambar
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdAdmin() {
-        return idAdmin;
-    }
-
-    public void setIdAdmin(Long idAdmin) {
-        this.idAdmin = idAdmin;
-    }
+    private String NamaSayur;
+    private String BeratSayur;
+    private BigDecimal HargaSayur; // Gunakan BigDecimal untuk harga
+    private String Image;
 
     public String getNamaSayur() {
-        return namaSayur;
+        return NamaSayur;
     }
 
     public void setNamaSayur(String namaSayur) {
-        this.namaSayur = namaSayur;
+        NamaSayur = namaSayur;
     }
 
     public String getBeratSayur() {
-        return beratSayur;
+        return BeratSayur;
     }
 
     public void setBeratSayur(String beratSayur) {
-        this.beratSayur = beratSayur;
+        BeratSayur = beratSayur;
     }
 
     public BigDecimal getHargaSayur() {
-        return hargaSayur;
+        return HargaSayur;
     }
 
     public void setHargaSayur(BigDecimal hargaSayur) {
-        this.hargaSayur = hargaSayur;
+        HargaSayur = hargaSayur;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
-    public void setImage(String image) {  // Menambahkan setter untuk gambar
-        this.image = image;
+    public void setImage(String image) {
+        this.Image = image;
+    }
+
+    public void setIdAdmin(Long id) {
+    }
+
+    public void setId(Long id) {
+
+    }
+
+    public void setApiUrl(String s) {
     }
 }
+
+// Getters and setters
