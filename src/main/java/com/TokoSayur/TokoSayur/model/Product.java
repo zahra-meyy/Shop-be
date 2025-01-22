@@ -20,8 +20,8 @@ public class Product {
     @Column(name = "harga_sayur")
     private BigDecimal hargaSayur;
 
-    @Column(name = "image") // Kolom baru untuk gambar
-    private String image;
+    @Column(name = "foto_url") // Kolom untuk URL gambar
+    private String fotoUrl;
 
     @ManyToOne
     @JoinColumn(name = "id_admin", nullable = false)
@@ -32,12 +32,12 @@ public class Product {
     }
 
     // Parameterized constructor without 'id' (since it's auto-generated)
-    public Product(Admin admin, String namaSayur, String beratSayur, BigDecimal hargaSayur, String image) {
+    public Product(Admin admin, String namaSayur, String beratSayur, BigDecimal hargaSayur, String fotoUrl) {
         this.admin = admin;
         this.namaSayur = namaSayur;
         this.beratSayur = beratSayur;
         this.hargaSayur = hargaSayur;
-        this.image = image;
+        this.fotoUrl = fotoUrl;
     }
 
     // Getter and Setter for id
@@ -82,13 +82,13 @@ public class Product {
         this.hargaSayur = hargaSayur;
     }
 
-    // Getter and Setter for image
-    public String getImage() {
-        return image;
+    // Getter and Setter for fotoUrl
+    public String getFotoUrl() {
+        return fotoUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
     // Getter and Setter for admin
