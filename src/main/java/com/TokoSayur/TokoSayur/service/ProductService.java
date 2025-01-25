@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface ProductService {
     List<Product> getAllProduct();
+
     List<Product> getAllByAdmin(Long idAdmin);
 
     Optional<Product> getById(Long id);
@@ -25,4 +26,10 @@ public interface ProductService {
     void deleteProduct(Long id) throws IOException;
 
     Optional<Product> getProductById(Long id);
+
+    // Menambahkan metode editProductDTO
+    ProductDTO editProductDTO(Long id, Long idAdmin, ProductDTO productDTO) throws IOException;
+
+    // Tetap mempertahankan metode dengan MultipartFile jika masih diperlukan
+    ProductDTO editProductDTO(Long id, Long idAdmin, MultipartFile file) throws IOException;
 }

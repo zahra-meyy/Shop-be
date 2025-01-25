@@ -59,33 +59,25 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
-    @PutMapping("/api/product/data/edit/{id}")
+    @PutMapping("/data/edit/{id}")
     public ResponseEntity<ProductDTO> updateProduct(
             @PathVariable Long id,
-            @RequestParam Long idAdmin,  // menerima idAdmin dari frontend
-            @RequestParam(required = false) MultipartFile file,  // menerima file gambar (optional)
-            @RequestParam String product) throws IOException {
+            @RequestParam("idAdmin") Long idAdmin,
+            @RequestParam(value = "file", required = false) MultipartFile file,
+            @RequestParam("product") String productJson) throws IOException {
 
-        // Parsing JSON produk yang diterima dari frontend
         ObjectMapper objectMapper = new ObjectMapper();
-        ProductDTO productDTO = objectMapper.readValue(product, ProductDTO.class);
+        ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
 
-        // Set idAdmin ke ProductDTO (pastikan idAdmin ada di DTO)
-        productDTO.setIdAdmin(idAdmin);
-
-        // Jika ada file, upload dan tambahkan URL foto ke DTO
         if (file != null && !file.isEmpty()) {
-            String fotoUrl = productService.editUploadFoto(id, file);  // Pastikan metode ini benar
+            String fotoUrl = productService.uploadFoto(file);
             productDTO.setFotoUrl(fotoUrl);
         }
 
-        // Memperbarui produk menggunakan service
         ProductDTO updatedProduct = productService.updateProduct(id, idAdmin, productDTO);
 
-        // Mengembalikan response dengan status OK dan produk yang telah diperbarui
         return ResponseEntity.ok(updatedProduct);
     }
-
 
     @DeleteMapping("/data/delete/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) throws IOException {

@@ -80,12 +80,13 @@ public class ProductImpl implements ProductService {
         Admin admin = adminRepository.findById(idAdmin)
                 .orElseThrow(() -> new NotFoundException("Admin dengan ID " + idAdmin + " tidak ditemukan"));
 
+        // Update atribut produk
         existingProduct.setAdmin(admin);
         existingProduct.setNamaSayur(productDTO.getNamaSayur());
         existingProduct.setBeratSayur(productDTO.getBeratSayur());
         existingProduct.setHargaSayur(productDTO.getHargaSayur());
 
-        // Update foto jika ada perubahan
+        // Update foto jika ada
         if (productDTO.getFotoUrl() != null && !productDTO.getFotoUrl().isEmpty()) {
             existingProduct.setFotoUrl(productDTO.getFotoUrl());
         }
@@ -101,6 +102,7 @@ public class ProductImpl implements ProductService {
 
         return result;
     }
+
 
     @Override
     public String uploadFoto(MultipartFile file) throws IOException {
@@ -162,5 +164,15 @@ public class ProductImpl implements ProductService {
     @Override
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id); // This should return the product by ID
+    }
+
+    @Override
+    public ProductDTO editProductDTO(Long id, Long idAdmin, ProductDTO productDTO) throws IOException {
+        return null;
+    }
+
+    @Override
+    public ProductDTO editProductDTO(Long id, Long idAdmin, MultipartFile file) {
+        return null;
     }
 }
